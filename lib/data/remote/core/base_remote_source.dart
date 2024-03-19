@@ -18,7 +18,7 @@ abstract class BaseRemoteSource {
   final dataLimit = 20;
 
   Future<Response<T>> getRequest<T>(String url, {Map<String, dynamic>? queryParams}) {
-    var path = "${DioProvider.baseUrl}api/$url";
+    var path = "${DioProvider.baseUrl}$url";
     var optionsWithoutToken = Options(headers: {});
     bool isLoggedIn = storage.read(PrefKeys.isLoggedIn) ?? false;
     var optionsWithToken = Options(headers: {'token': getUserToken()});
@@ -27,7 +27,7 @@ abstract class BaseRemoteSource {
   }
 
   Future<Response<T>> postRequest<T>(String url, {Object? bodyParams}) {
-    var path = "${DioProvider.baseUrl}api/$url";
+    var path = "${DioProvider.baseUrl}$url";
     var optionsWithoutToken = Options(headers: {});
     bool isLoggedIn = storage.read(PrefKeys.isLoggedIn) ?? false;
     var optionsWithToken = Options(headers: {'token': getUserToken()});

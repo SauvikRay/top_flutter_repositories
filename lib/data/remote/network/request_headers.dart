@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'dio_provider.dart';
+import 'network_constants.dart';
+
 
 class RequestHeaderInterceptor extends InterceptorsWrapper {
   final _storage = GetStorage();
@@ -15,7 +18,7 @@ class RequestHeaderInterceptor extends InterceptorsWrapper {
 
   Future<Map<String, String>> getCustomHeaders() async {
     final String accessToken = _storage.read("") ?? "";
-    var customHeaders = {'content-type': 'application/json'};
+    var customHeaders = {NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,NetworkConstants.X_GITHUB_API_VERSION: NetworkConstants.API_VERSION,};
     if (accessToken.trim().isNotEmpty) {
       customHeaders.addAll({
         'Authorization': "Bearer $accessToken",

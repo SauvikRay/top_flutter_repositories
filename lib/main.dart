@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'ui/git_repository_list/repository_list_screen.dart';
+import 'ui/feature/git_repository_list/repository_list_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

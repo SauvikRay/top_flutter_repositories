@@ -1,11 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import '../../data/remote/model/git_repository_response.dart';
-import '../../data/remote/repository/flutter_repositoryImpl.dart';
+import '../../../data/remote/model/git_repository_response.dart';
+import '../../../data/remote/repository/flutter_repositoryImpl.dart';
 
 class RepositoryListController extends GetxController {
   RxList<Item> items = <Item>[].obs;
@@ -45,7 +43,7 @@ class RepositoryListController extends GetxController {
 
   sortByDateTime(List<Item> itemList){
     if(itemList.isNotEmpty){
-      itemList.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!),);
+      itemList.sort((a, b) => b.pushedAt!.compareTo(a.pushedAt!),);
       return itemList;
     }return[];
   }

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'data/local/dao/db_init.dart';
 import 'ui/feature/git_repository_list/repository_list_screen.dart';
 
 void main() {
+
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+      DbSingleton.instance.create().then((value) {
+        runApp(const MyApp());
+      },);
 }
 
 class MyApp extends StatelessWidget {

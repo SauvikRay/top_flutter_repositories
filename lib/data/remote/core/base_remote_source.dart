@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
-import '../../../helpers/prefe_keys.dart';
+import '../../../constants/prefe_keys_constants.dart';
 import '../network/dio_provider.dart';
 import '../network/error_handlers.dart';
 import '../network/exceptions/base_exception.dart';

@@ -69,9 +69,9 @@ class Item {
     String? labelsUrl;
     String? releasesUrl;
     String? deploymentsUrl;
-    DateTime? createdAt;
-    DateTime? updatedAt;
-    DateTime? pushedAt;
+    String? createdAt;
+    String? updatedAt;
+    String? pushedAt;
     String? gitUrl;
     String? sshUrl;
     String? cloneUrl;
@@ -234,9 +234,9 @@ class Item {
         labelsUrl: json["labels_url"],
         releasesUrl: json["releases_url"],
         deploymentsUrl: json["deployments_url"],
-        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-        pushedAt: json["pushed_at"] == null ? null : DateTime.parse(json["pushed_at"]),
+        createdAt: json["created_at"] == null ? null : json["created_at"],
+        updatedAt: json["updated_at"] == null ? null : json["updated_at"],
+        pushedAt: json["pushed_at"] == null ? null : json["pushed_at"],
         gitUrl: json["git_url"],
         sshUrl: json["ssh_url"],
         cloneUrl: json["clone_url"],
@@ -317,9 +317,9 @@ class Item {
         "labels_url": labelsUrl,
         "releases_url": releasesUrl,
         "deployments_url": deploymentsUrl,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-        "pushed_at": pushedAt?.toIso8601String(),
+        "created_at": createdAt,
+        "updated_at": updatedAt,
+        "pushed_at": pushedAt,
         "git_url": gitUrl,
         "ssh_url": sshUrl,
         "clone_url": cloneUrl,

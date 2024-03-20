@@ -22,7 +22,7 @@ class RepositoryListController extends GetxController {
     try {
       var response = await _repository.getGitRepoResponse(perPage: perPage, page: page);
       if (response.items?.isNotEmpty == true) {
-        items.addAll(response.items ?? []);
+        items.addAll(response.items  ?? []);
       }
       onSuccess(true);
     } catch (e) {

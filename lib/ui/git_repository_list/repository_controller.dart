@@ -11,27 +11,42 @@ class RepositoryListController extends GetxController {
   RxList<Item> items = <Item>[].obs;
   final _repository = Get.put(FlutterRepositoryImpl());
 
-  RxInt page=1.obs;
+  RxInt page = 1.obs;
   @override
   void onInit() {
-    getSearchResult((isSuccess){},page: page.value);
+    getSearchResult((isSuccess) {}, page: page.value);
     super.onInit();
   }
 
-
-
-  void getSearchResult(Function(bool isSuccess)onSuccess,{int? perPage,required int page}) async {
+  void getSearchResult(Function(bool isSuccess) onSuccess, {int? perPage, required int page}) async {
     try {
-      var response = await _repository.getGitRepoResponse(perPage: perPage,page: page);
+      var response = await _repository.getGitRepoResponse(perPage: perPage, page: page);
       if (response.items?.isNotEmpty == true) {
         items.addAll(response.items ?? []);
       }
       onSuccess(true);
     } catch (e) {
-        onSuccess(false);
+      onSuccess(false);
       if (kDebugMode) {
         log('Error : $e');
       }
     }
+  }
+
+  sortByStarCount(List<Item> itemList) {
+    if (itemList.isNotEmpty) {
+      itemList.sort(
+        (a, b) => b.watchers!.compareTo(a.watchers!),
+      );
+      return itemList;
+    }
+    return [];
+  }
+
+  sortByDateTime(List<Item> itemList){
+    if(itemList.isNotEmpty){
+      itemList.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!),);
+      return itemList;
+    }return[];
   }
 }

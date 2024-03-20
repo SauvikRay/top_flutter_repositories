@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'ui/git_repository_list/repository_list_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

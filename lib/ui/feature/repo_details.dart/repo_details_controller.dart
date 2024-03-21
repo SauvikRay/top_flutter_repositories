@@ -2,16 +2,16 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:top_flutter_repositories/data/injector/injector.dart';
 
 import '../../../data/local/db_util.dart';
 import '../../../data/local/model/database_response.dart';
-import '../../../data/remote/model/repo_details._response.dart';
 import '../../../data/remote/repository/flutter_repositoryImpl.dart';
 import '../git_repository_list/db.dart';
 
 class RepoDetailsControler extends GetxController{
     final _db = GetAllRepoItemDao(dbUtil: DbUtil());
-  final _repository = Get.put(FlutterRepositoryImpl());
+  // final _repository = Get.put(FlutterRepositoryImpl());
 
   RxBool isLoading=true.obs;
   DatabaseItem ? repoDetails;
@@ -26,7 +26,7 @@ class RepoDetailsControler extends GetxController{
          isLoading.value=false;
       }else{
 
-      final response = await _repository.getRepoDetails(owner: owner ,repoName: repoName);
+      final response = await locator<FlutterRepositoryImpl>() .getRepoDetails(owner: owner ,repoName: repoName);
       if(response.owner !=null){
         
         isLoading.value=false;

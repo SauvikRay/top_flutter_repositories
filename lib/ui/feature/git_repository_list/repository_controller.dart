@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:top_flutter_repositories/data/injector/injector.dart';
 import 'package:top_flutter_repositories/data/local/db_util.dart';
 import 'package:top_flutter_repositories/data/remote/network/error_handlers.dart';
 
@@ -13,7 +14,6 @@ class RepositoryListController extends GetxController {
   final _db = GetAllRepoItemDao(dbUtil: DbUtil());
   RxList<Item> items = <Item>[].obs;
   List<DatabaseItem> databaseItem=[];
-  final _repository = Get.put(FlutterRepositoryImpl());
 
   RxInt page = 1.obs;
   @override
@@ -30,7 +30,7 @@ class RepositoryListController extends GetxController {
         items.add(Item(id: item.id, name: item.repoName,owner: Owner(login: item.ownerName,avatarUrl: item.avarterId),stargazersCount: item.starCount,pushedAt: item.pushedAt));
         }
       } else {
-        var response = await _repository.getGitRepoResponse(perPage: perPage, page: page);
+        var response = await locator<FlutterRepositoryImpl>().getGitRepoResponse(perPage: perPage, page: page);
         if (response.items?.isNotEmpty == true) {
           items.addAll(response.items ?? []);
            

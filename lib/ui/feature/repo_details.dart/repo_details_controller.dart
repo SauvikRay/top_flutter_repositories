@@ -7,7 +7,7 @@ import 'package:top_flutter_repositories/data/injector/injector.dart';
 import '../../../data/local/db_util.dart';
 import '../../../data/local/model/database_response.dart';
 import '../../../data/remote/repository/flutter_repositoryImpl.dart';
-import '../git_repository_list/db.dart';
+import '../db.dart';
 
 class RepoDetailsControler extends GetxController{
     final _db = GetAllRepoItemDao(dbUtil: DbUtil());

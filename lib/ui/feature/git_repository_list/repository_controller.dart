@@ -1,14 +1,16 @@
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
+import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:top_flutter_repositories/data/injector/injector.dart';
 import 'package:top_flutter_repositories/data/local/db_util.dart';
 import 'package:top_flutter_repositories/data/remote/network/error_handlers.dart';
 
 import '../../../data/local/model/database_response.dart';
+import '../../../data/local/model/save_time_response.dart';
 import '../../../data/remote/model/git_repository_response.dart';
 import '../../../data/remote/repository/flutter_repositoryImpl.dart';
-import 'db.dart';
+import '../db.dart';
 
 class RepositoryListController extends GetxController {
   final _db = GetAllRepoItemDao(dbUtil: DbUtil());
@@ -18,7 +20,9 @@ class RepositoryListController extends GetxController {
   RxInt page = 1.obs;
   @override
   void onInit() {
+    ceckTimeDifference(id: 1,now:DateTime.now()).then((value) {
     getSearchResult((isSuccess) {}, page: page.value);
+    },);
     super.onInit();
   }
 
@@ -66,5 +70,19 @@ class RepositoryListController extends GetxController {
       return itemList;
     }
     return [];
+  }
+
+ Future<void> ceckTimeDifference({required int id,required DateTime now})async{
+
+      final savedTime=await _db.getSavedTime(id);
+      if(savedTime.isNotEmpty){
+        final diff = now.difference(DateTime.parse(savedTime[0].dateTime.toString()));
+        if(diff.inMinutes>=2){
+          _db.clearDataTable();
+        }
+      }else{
+      final saveTime=SaveTime(id:1,dateTime: now.toString());
+       _db.saveTimetoDatabase([saveTime]);
+      }
   }
 }

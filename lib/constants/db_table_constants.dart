@@ -2,6 +2,7 @@ final class TableConst {
   //table name
   static const kGitResultTableName = 'gitList';
   static const kDetailsTableName = 'detailsTable';
+  static const kSaveTimeTable = 'saveTime';
 
   //fields
   static const kId = 'id';
@@ -12,4 +13,7 @@ final class TableConst {
   static const kStarCount = 'stargazers_count';
   static const kContent = 'description';
   static const kPushedAt = 'pushed_at';
+
+  //Save time
+  static const kdataSaveTime='dataSaveTime';
 }

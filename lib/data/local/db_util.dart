@@ -15,4 +15,8 @@ import 'package:top_flutter_repositories/data/local/dao/db_init.dart';
           }
         },
       );
+
+  Future<void>clearDatabase(String tableName)=>DbSingleton.instance.db.transaction((txn)async{
+    txn.delete(tableName);
+  });
 }

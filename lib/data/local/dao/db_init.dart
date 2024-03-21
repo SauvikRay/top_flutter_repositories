@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:path/path.dart';
@@ -19,15 +18,13 @@ final class DbSingleton {
       final batch = db.batch();
       _createDataListTableV1(batch);
       await batch.commit();
-    },
-    version: databaseVersion
-    );
+    }, version: databaseVersion);
     log(db.toString());
     return db;
   }
 
   void _createDataListTableV1(Batch batch) {
-  batch.execute('''
+    batch.execute('''
     CREATE TABLE ${TableConst.kDetailsTableName}
     (
     ${TableConst.kId} INTEGER PRIMARY KEY,
@@ -54,5 +51,12 @@ final class DbSingleton {
     ${TableConst.kPushedAt} TEXT
     )
  ''');
+
+    batch.execute('''
+  CREATE TABLE ${TableConst.kSaveTimeTable} (
+    ${TableConst.kId} INTEGER PRIMARY KEY,
+    ${TableConst.kdataSaveTime} TEXT
+  )
+''');
   }
 }

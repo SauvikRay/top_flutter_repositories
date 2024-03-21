@@ -1,6 +1,10 @@
 import 'dart:math' as math;
+import 'dart:ui';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart' as snackbar;
+import 'package:get/get_core/src/get_main.dart';
 
 /// code copied from https://pub.dev/packages/pretty_dio_logger
 class PrettyDioLogger extends Interceptor {
@@ -103,7 +107,12 @@ class PrettyDioLogger extends Interceptor {
         logPrint('');
       } else {
         _printBoxed(header: 'DioError ║ ${err.type}', text: err.message);
+        snackbar.Get.showSnackbar( snackbar.GetSnackBar( animationDuration: const Duration(milliseconds: 700),backgroundColor: Colors.red,
+        duration: const Duration(seconds: 3),
+        messageText: Text('${err.message}',style: const TextStyle(color: Colors.white),),
+        ));
       }
+
     }
     super.onError(err, handler);
   }

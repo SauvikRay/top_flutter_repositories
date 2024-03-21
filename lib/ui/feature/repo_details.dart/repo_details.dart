@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -9,9 +7,10 @@ import '../../custom_widgets/circular_loader.dart';
 import 'repo_details_controller.dart';
 
 class GitRepoDetails extends StatefulWidget {
-  const GitRepoDetails({super.key,required this.ownerName,required this.repoName});
+  const GitRepoDetails({super.key,required this.ownerName,required this.repoName, required this.id});
 final String ownerName;
 final String repoName;
+final int  id;
   @override
   State<GitRepoDetails> createState() => _GitRepoDetailsState();
 }
@@ -21,7 +20,7 @@ class _GitRepoDetailsState extends State<GitRepoDetails> {
 
   @override
   void initState() {
-    detailsController.getRepoDetails(owner: widget.ownerName,repoName: widget.repoName);
+    detailsController.getRepoDetails(owner: widget.ownerName,repoName: widget.repoName,id: widget.id);
     super.initState();
   }
   @override
@@ -54,7 +53,7 @@ class _GitRepoDetailsState extends State<GitRepoDetails> {
                           
                             child: CachedNetworkImage(
                               key: UniqueKey(),
-                              imageUrl: detailsController.repoDetails?.owner?.avatarUrl?? '',
+                              imageUrl: detailsController.repoDetails?.avarterId?? '',
                               fit: BoxFit.cover,
                               errorWidget: (context, url, error) => const Icon(Icons.image),
                               placeholder:(context, url)=> const CircularLoader(),
@@ -66,11 +65,11 @@ class _GitRepoDetailsState extends State<GitRepoDetails> {
                   ),
               
               
-                  SizedBox(height: 10,),
-                  Text(detailsController.repoDetails?.owner?.login?? '',style:textTheme.headlineSmall,),
+                  const SizedBox(height: 10,),
+                  Text(detailsController.repoDetails?.ownerName?? '',style:textTheme.headlineSmall,),
                   Text('${detailsController.repoDetails?.description}',style: textTheme.bodyMedium,),
 
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
 
                   Text('Last Update : ${dateTimeFormat(detailsController.repoDetails?.pushedAt.toString()??'')}'),
               

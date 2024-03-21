@@ -1,6 +1,9 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'pretty_dio_logger.dart';
 import 'request_headers.dart';
+import 'retry_interceptor/dio_connectivity_request.dart';
+import 'retry_interceptor/retry_interceptor.dart';
 
 class DioProvider {
   static const String baseUrl = "https://api.github.com/"; //Live
@@ -44,11 +47,15 @@ class DioProvider {
     return _instance!;
   }
 
+    static final retryRequest=DioConnectivityRequest(dio:_instance!,connectivity:  Connectivity());
+    static final retryInterceptor= OnRetryConnection(request:retryRequest );
+
   static _addInterceptors() {
     _instance ??= httpDio;
     _instance!.interceptors.clear();
     _instance!.interceptors.add(RequestHeaderInterceptor());
     _instance!.interceptors.add(_prettyDioLogger);
+    _instance!.interceptors.add(retryInterceptor);
   }
 
   static String _buildContentType(String version) {

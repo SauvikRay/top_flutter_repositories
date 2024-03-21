@@ -20,9 +20,23 @@ class GetAllRepoItemDao {
       throw handleError(e.toString());
     }
   }
+  Future<List<DatabaseItem>>getDetailsDataById(int id)async{
+    try{
+      final result = await _dbUtil.getDataByID(tableName: TableConst.kDetailsTableName,id:id.toString(),where:"id = ?"  );
+         return List.generate(result.length, (i) {
+        return DatabaseItem.fromJson(result[i]);
+      });
+    }catch(e){
+      throw handleError(e.toString());
+    }
+  }
 
   void saveAllPost(List<DatabaseItem> items) {
     _dbUtil.insertBatchData(table: TableConst.kGitResultTableName, entities: items);
+  }
+  
+  void saveDetailsPost(List<DatabaseItem> items) {
+    _dbUtil.insertBatchData(table: TableConst.kDetailsTableName, entities: items);
   }
 }
 

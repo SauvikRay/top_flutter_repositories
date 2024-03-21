@@ -102,7 +102,7 @@ class _GitRepositoryListScreenState extends State<GitRepositoryListScreen> {
                                   Item item = repositoryControler.items[index];
                                   return MaterialButton(
                                     onPressed: () {
-                                      Get.to(() => GitRepoDetails(ownerName: item.owner?.login ?? '', repoName: item.name ?? ''));
+                                      Get.to(() => GitRepoDetails(ownerName: item.owner?.login ?? '', repoName: item.name ?? '',id: item.id??0,),transition: Transition.rightToLeft);
                                     },
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                     padding: EdgeInsets.zero,
@@ -112,7 +112,7 @@ class _GitRepositoryListScreenState extends State<GitRepositoryListScreen> {
                                           ? Text(
                                               item.stargazersCount!.toInt() > 999 ? '${numberFormat(item.stargazersCount ?? 0)}' : '${item.stargazersCount}',
                                             )
-                                          : Text(''),
+                                          :const Text(''),
                                       trailing: Text(dateTimeFormat(item.pushedAt.toString())),
                                     ),
                                   );
@@ -126,7 +126,7 @@ class _GitRepositoryListScreenState extends State<GitRepositoryListScreen> {
                         ],
                       )),
                 )
-              : Center(child: const CircularLoader());
+              :const Center(child:  CircularLoader());
         }));
   }
 }

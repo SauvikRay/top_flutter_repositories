@@ -1,11 +1,7 @@
 import 'dart:developer';
-import 'package:flutter/foundation.dart';
-import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:top_flutter_repositories/data/injector/injector.dart';
 import 'package:top_flutter_repositories/data/local/db_util.dart';
-import 'package:top_flutter_repositories/data/remote/network/error_handlers.dart';
-
 import '../../../data/local/model/database_response.dart';
 import '../../../data/local/model/save_time_response.dart';
 import '../../../data/remote/model/git_repository_response.dart';

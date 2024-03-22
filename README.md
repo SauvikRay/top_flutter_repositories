@@ -1,16 +1,43 @@
 # top_flutter_repositories
 
-A new Flutter project.
+This project helps to find top fluter repositories from github.
+                       |---db_table_constants.dart
+                       |
+      |---constants ==>|--- pref_keys_constants.dart
+      |              
+      |          |---injector==> injector.dart
+      |---data---|
+      |          |           |---dao=>db_init.dart
+      |          |---local==>|---model=>database_response.dart,save_time_response.dart
+      |          |           |---db_util.dart
+      |          |
+      |          |
+      |          |
+      |          |
+      |          |
+      |          |            |---core
+      |          |            |
+      |          |            |---datasource
+      |          |---remote==>|
+      |                       |---model
+      |                       |---network
+      |                       |---exceptions
+      |                       |--- retry_interceptor
+      |                       |--- api_endpoints
+      |                       |---dio_provider
+      |                       |---error_handlers
+      |                       |---network_constants
+      |                       |---pretty_dio_logger
+      |                       |---request_headers
+      |
+      |          
+      |
+lib==>|---helpers
+      |---ui=> here are many features folder. where we can add many features during projects development and scallable our projects 
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+      

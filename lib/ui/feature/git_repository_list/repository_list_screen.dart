@@ -16,7 +16,6 @@ class GitRepositoryListScreen extends StatefulWidget {
   State<GitRepositoryListScreen> createState() => _GitRepositoryListScreenState();
 }
 
-enum SampleItem { itemOne, itemTwo, itemThree }
 
 class _GitRepositoryListScreenState extends State<GitRepositoryListScreen> {
   final repositoryControler = Get.put(RepositoryListController());
